@@ -21,6 +21,9 @@ jobs:
         with:
           hugo-version: '0.145.0'  # 你可以改成最新版本
 
+      - name: Show submodule contents
+        run: ls -la themes/PaperMod
+
       - name: Build
         run: hugo --minify
 
