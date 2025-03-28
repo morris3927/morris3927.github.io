@@ -1,0 +1,169 @@
+baseURL = "https://morris3927.github.io/"
+title = "Morris-blog"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+[params]
+  env = "production" # to enable google analytics, opengraph, twitter-cards and schema.
+  title = "Morris blog"
+  description = "Morris blog description"
+  keywords = ["Blog", "Portfolio", "PaperMod", "Morris"]
+  # author = "Me"
+  # author = ["Me", "You"] # multiple authors
+  # images = ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat = "January 2, 2006"
+  defaultTheme = "auto" # dark, light
+  disableThemeToggle = false
+
+  ShowReadingTime = true
+  # ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  [params.assets]
+    # disableHLJS = true # to disable highlight.js
+    # disableFingerprinting = true
+    favicon = "/images/turtle.png"
+    favicon16x16 = "/images/turtle.png"
+    favicon32x32 = "/images/turtle.png"
+    apple_touch_icon = "/images/turtle.png"
+    safari_pinned_tab = "/images/turtle.png"
+
+  [params.label]
+    text = "Home"
+    icon = "/apple-touch-icon.png"
+    iconHeight = 35
+
+  [params.profileMode]
+    enabled = true
+    title = "Morris Blog"
+    subtitle = "重新回頭念書的工程師"
+    imageUrl = "/images/turtle.png"
+    imageWidth = 200
+    imageHeight = 200
+    imageTitle = "turtle-img"
+
+    [[params.profileMode.buttons]]
+      name = "技術"
+      url = "posts/tech"
+
+    [[params.profileMode.buttons]]
+      name = "閱讀"
+      url = "posts/read"
+
+    [[params.profileMode.buttons]]
+      name = "生活"
+      url = "posts/life"
+
+    [[params.profileMode.buttons]]
+      name = "關於我"
+      url = "/about"
+
+
+  # [[params.socialIcons]]
+  #   name = "x"
+  #   url = "https://x.com/"
+
+  # [[params.socialIcons]]
+  #   name = "stackoverflow"
+  #   url = "https://stackoverflow.com"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/"
+
+  [[params.socialIcons]]
+    name = "Instagram"
+    url = "https://www.instagram.com/"
+
+
+# [TODO] 上架後調整
+  [params.analytics.google]
+    SiteVerificationTag = "XYZabc"
+
+  [params.analytics.bing]
+    SiteVerificationTag = "XYZabc"
+
+  [params.analytics.yandex]
+    SiteVerificationTag = "XYZabc"
+
+  [params.cover]
+    hidden = true
+    hiddenInList = true
+    hiddenInSingle = true
+
+  [params.editPost]
+    URL = "https://github.com/morris3927-github.io/content"
+    Text = "Suggest Changes"
+    appendFilePath = true
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    limit = 10
+    keys = ["title", "permalink", "summary", "content"]
+
+[menu]
+
+  [[menu.main]]
+    identifier = "文章分類"
+    name = "文章分類"
+    url = "/posts/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "標籤"
+    name = "標籤"
+    url = "/tags/"
+    weight = 20
+
+  # [[menu.main]]
+  #   identifier = "example"
+  #   name = "example.org"
+  #   url = "https://example.org"
+  #   weight = 30
+
+  [[menu.main]]
+    identifier = "所有文章"
+    name = "所有文章"
+    url = "/archives"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "關於我"
+    name = "關於我"
+    url = "/about"
+    weight = 20
+
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    # anchorLineNos = true
+    # codeFences = true
+    # guessSyntax = true
+    # lineNos = true
+    # style = "monokai"
