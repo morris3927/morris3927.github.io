@@ -6,7 +6,14 @@
     <description>Recent content in 技術文章 on Morris-blog</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Fri, 28 Mar 2025 11:31:04 +0800</lastBuildDate>
     <atom:link href="https://morris3927.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First Post</title>
+      <link>https://morris3927.github.io/posts/tech/first-post/</link>
+      <pubDate>Fri, 28 Mar 2025 11:31:04 +0800</pubDate>
+      <guid>https://morris3927.github.io/posts/tech/first-post/</guid>
+      <description>&lt;p&gt;啦啦啦&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
