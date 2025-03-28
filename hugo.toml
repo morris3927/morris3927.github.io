@@ -21,23 +21,24 @@ buildExpired = false
   # images = ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto" # dark, light
-  disableThemeToggle = false
+  disableThemeToggle = false                     # 是否禁用主題切換按鈕（深色/淺色），false 表示允許切換
 
-  ShowReadingTime = true
-  # ShowShareButtons = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowWordCount = true
-  ShowRssButtonInSectionTermList = true
-  UseHugoToc = true
-  disableSpecial1stPost = false
-  disableScrollToTop = false
-  comments = false
-  hidemeta = false
-  hideSummary = false
-  showtoc = false
-  tocopen = false
+  ShowReadingTime = true                         # 顯示文章預估閱讀時間
+  # ShowShareButtons = true                      # 顯示社群分享按鈕（例如 Facebook、X），目前註解掉表示關閉
+  ShowPostNavLinks = true                        # 顯示上下篇文章的導覽按鈕
+  ShowBreadCrumbs = true                         # 顯示麵包屑導航（例如「首頁 > 技術 > 文章標題」）
+  ShowCodeCopyButtons = true                     # 程式碼區塊右上角顯示「複製」按鈕
+  ShowWordCount = true                           # 顯示文章字數
+  ShowRssButtonInSectionTermList = true          # 在分類/標籤頁顯示 RSS 訂閱按鈕
+  UseHugoToc = true                              # 使用 Hugo 內建的目錄功能（Table of Contents）
+  disableSpecial1stPost = false                  # 是否取消第一篇文章的特殊樣式（例如加大或加圖），false 表示保留樣式
+  disableScrollToTop = false                     # 是否關閉右下角「回到頂部」按鈕，false 表示開啟
+  comments = false                               # 是否開啟留言系統（例如 Disqus）
+  hidemeta = false                               # 是否隱藏文章的 meta 資訊（作者、日期、閱讀時間等），false 表示顯示
+  hideSummary = false                            # 是否隱藏文章摘要（摘要會在首頁、分類頁出現），false 表示顯示
+  showtoc = true                                # 是否顯示目錄（Table of Contents）區塊，false 表示不顯示（但可由 UseHugoToc 控制）
+  tocopen = false                                # 預設是否展開目錄，false 表示收合
+
 
   [params.assets]
     # disableHLJS = true # to disable highlight.js
