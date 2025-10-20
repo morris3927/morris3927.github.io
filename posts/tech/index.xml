@@ -4,17 +4,27 @@
     <title>技術文章 on Morris-blog</title>
     <link>https://morris3927.github.io/posts/tech/</link>
     <description>Recent content in 技術文章 on Morris-blog</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.151.2</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 28 Mar 2025 17:09:36 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Oct 2025 15:52:51 +0800</lastBuildDate>
     <atom:link href="https://morris3927.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git 瘦身筆記：移除歷史記錄中的大型檔案</title>
+      <link>https://morris3927.github.io/posts/tech/bfg-repo-cleaner-process-notes/</link>
+      <pubDate>Mon, 20 Oct 2025 15:52:51 +0800</pubDate>
+      <guid>https://morris3927.github.io/posts/tech/bfg-repo-cleaner-process-notes/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;將 Git 專案的大小從 &lt;strong&gt;1.3 GB&lt;/strong&gt; 成功縮減，並將清理後的歷史記錄同步到遠端伺服器。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     <item>
       <title>Hugo 個人網站建立流程紀錄（使用 GitHub Pages &#43; PaperMod 主題）</title>
       <link>https://morris3927.github.io/posts/tech/blog-build/</link>
       <pubDate>Fri, 28 Mar 2025 17:09:36 +0800</pubDate>
       <guid>https://morris3927.github.io/posts/tech/blog-build/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;建站紀錄｜從 Hugo 初始化到 GitHub 自動部署&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;建站紀錄｜從 Hugo 初始化到 GitHub 自動部署&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
   </channel>
 </rss>
