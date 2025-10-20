@@ -4,7 +4,7 @@
     <title>Archives on Morris-blog</title>
     <link>http://localhost:1313/archives/</link>
     <description>Recent content in Archives on Morris-blog</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.151.2</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/archives/index.xml" rel="self" type="application/rss+xml" />
   </channel>

@@ -19,7 +19,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.145.0'  # 你可以改成最新版本
+          hugo-version: '0.151.2'  # 你可以改成最新版本
 
       - name: Show submodule contents
         run: ls -la themes/PaperMod

@@ -1,0 +1,35 @@
+# Hugo 靜態網站產生器的通用忽略清單
+
+# 1. 忽略編譯後的網站輸出目錄 (最重要！)
+# 由於您使用 GitHub Actions 進行部署，這個資料夾會在伺服器上生成，不應提交到 Git 倉庫。
+public/
+# 如果您使用了不同於 public 的目標資料夾，請在下方新增：
+# dist/
+
+# 2. 忽略 Hugo 快取資料夾
+# 這些是 Hugo 在本地建置時生成的臨時檔案，不需要提交。
+.hugo_build.lock
+.hugo_cache/
+resources/_gen/
+
+# 3. 忽略系統和編輯器生成的檔案
+# macOS 系統檔案
+.DS_Store
+
+# VS Code 編輯器設定
+.vscode/
+
+# 專案套件管理工具的檔案 (如果使用 npm 或 Go modules)
+node_modules/
+go.sum
+go.mod
+
+# 4. 忽略本地環境配置 (如果適用)
+# 如果您有單獨的本地測試配置，不想提交到遠端，可以忽略：
+# config/_default/
+# .env
+
+# 5. 忽略本地主題測試 (如果適用)
+# 如果您只是為了測試而下載了整個主題原始碼，可以忽略：
+# themes/**/node_modules/
+# themes/**/dist/
