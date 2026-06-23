@@ -10,18 +10,18 @@
     <atom:link href="https://morris3927.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git 瘦身筆記：移除歷史記錄中的大型檔案</title>
-      <link>https://morris3927.github.io/posts/notes/bfg-repo-cleaner-process-notes/</link>
+      <link>https://morris3927.github.io/posts/bfg-repo-cleaner-process-notes/</link>
       <pubDate>Mon, 20 Oct 2025 15:52:51 +0800</pubDate>
-      <guid>https://morris3927.github.io/posts/notes/bfg-repo-cleaner-process-notes/</guid>
+      <guid>https://morris3927.github.io/posts/bfg-repo-cleaner-process-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;將 Git 專案的大小從 &lt;strong&gt;1.3 GB&lt;/strong&gt; 成功縮減，並將清理後的歷史記錄同步到遠端伺服器。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Hugo 個人網站建立流程紀錄（使用 GitHub Pages &#43; PaperMod 主題）</title>
-      <link>https://morris3927.github.io/posts/notes/blog-build/</link>
+      <link>https://morris3927.github.io/posts/blog-build/</link>
       <pubDate>Fri, 28 Mar 2025 17:09:36 +0800</pubDate>
-      <guid>https://morris3927.github.io/posts/notes/blog-build/</guid>
+      <guid>https://morris3927.github.io/posts/blog-build/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;建站紀錄｜從 Hugo 初始化到 GitHub 自動部署&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -31,8 +31,8 @@
       <link>https://morris3927.github.io/about/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://morris3927.github.io/about/</guid>
-      <description>&lt;p&gt;嗨！我是 Morris，這裡是我的個人網站 👋&lt;br&gt;
-我喜歡寫程式、研究技術，也愛喝咖啡&lt;/p&gt;</description>
+      <description>&lt;p&gt;嗨，我是 Morris。一個重新回頭念書的後端工程師，目前在實驗室一邊做研究、一邊維護內部系統，現在主要以 Python 進行開發。&lt;/p&gt;
+&lt;p&gt;這個部落格用來記錄：讀過的&lt;strong&gt;論文筆記&lt;/strong&gt;、歷年的&lt;strong&gt;網頁作品&lt;/strong&gt;，以及一些關於學習與職涯的想法。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
