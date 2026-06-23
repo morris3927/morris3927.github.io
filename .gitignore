@@ -9,6 +9,10 @@ public/
 # 1.5 暫存區:舊作品原始碼(各自有獨立 git repo,僅供本機啟動截圖,不入版控)
 temp/
 
+# 1.6 設計交付包(Claude design 產出的參考稿,不入版控)
+design_handoff_blog_redesign/
+design_handoff_blog_redesign-2/
+
 # 2. 忽略 Hugo 快取資料夾
 # 這些是 Hugo 在本地建置時生成的臨時檔案，不需要提交。
 .hugo_build.lock
@@ -36,3 +40,5 @@ go.mod
 # 如果您只是為了測試而下載了整個主題原始碼，可以忽略：
 # themes/**/node_modules/
 # themes/**/dist/
+# 設計壓縮檔不入版控
+*.zip

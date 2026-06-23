@@ -1,0 +1,191 @@
+/* =====================================================================
+   Morris-blog · Redesign
+   風格沿用 /projects/ 頁:Inter + JetBrains Mono、會閃的圓點 eyebrow、
+   粗體大標、mono 標籤、膠囊連結、節點時間軸。
+   配色完全沿用 PaperMod 變數(--theme / --entry / --primary /
+   --secondary / --border / --content / --code-bg),因此黑白模式自動成立。
+
+   放置位置:  <site>/assets/css/extended/redesign.css
+   PaperMod 會自動把 assets/css/extended/*.css 接在主樣式之後,
+   不需要改任何設定。字體請搭配 layouts/partials/extend_head.html 載入。
+   ===================================================================== */
+
+:root {
+  --rd-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --rd-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---- 全站基底 ---------------------------------------------------- */
+body {
+  font-family: var(--rd-sans);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.003em;
+}
+.main { max-width: 760px; }            /* PaperMod 預設 720,放寬一點 */
+::selection { background: var(--primary); color: var(--theme); }
+
+@keyframes rd-blink { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
+
+/* ---- 共用:會閃的圓點 eyebrow ------------------------------------- */
+/* 在頁首標題前自動加上一個閃爍圓點;eyebrow 文字請放在 section 的
+   _index.md → params.eyebrow,並由 extend_head / 區塊樣式呈現。      */
+.rd-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--rd-mono);
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--secondary); margin-bottom: 20px;
+}
+.rd-eyebrow::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--primary); display: inline-block;
+  animation: rd-blink 2.4s infinite;
+}
+
+/* ---- Header / 導覽列 --------------------------------------------- */
+.nav { max-width: 760px; }
+.logo a { font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+#menu { font-weight: 500; }
+#menu a { font-size: 14px; }
+#menu li a { padding: 6px 0; margin-inline: 11px; color: var(--secondary); }
+#menu li a:hover { color: var(--primary); }
+#menu .active {
+  color: var(--primary); font-weight: 700;
+  border-bottom: 2px solid var(--primary); margin-bottom: -2px; padding-bottom: 4px;
+}
+.logo-switches .theme-toggle { color: var(--secondary); }
+
+/* ---- 頁首大標(list / taxonomy / single 共用)-------------------- */
+.page-header,
+.post-header { padding-top: 28px; }
+.page-header .post-title,
+.post-single .post-title {
+  font-size: 46px; line-height: 1.05; font-weight: 800; letter-spacing: -.03em;
+  margin-bottom: 16px;
+}
+.page-header .post-description {
+  font-size: 17px; line-height: 1.6; color: var(--secondary);
+  margin: 0;   /* 不設 max-width,寬度與標題 / 內容一致(原本 560px 會顯得特別窄) */
+}
+/* 註:頁首的閃爍圓點 eyebrow 改由 layouts/partials/breadcrumbs.html 輸出
+   (.rd-eyebrow,讀各頁 front matter 的 eyebrow 參數),故此處不再自動加裝飾點,
+   以免與 eyebrow 自帶的圓點重複。 */
+.page-header { position: relative; }
+
+/* ---- 首頁 Profile mode ------------------------------------------- */
+.profile .profile_inner h1 {
+  font-size: 52px; font-weight: 800; letter-spacing: -.03em; margin-top: 26px;
+}
+.profile img { border: 1px solid var(--border); }
+.profile .buttons .button {
+  border: 1px solid var(--primary); border-radius: 999px;
+  background: transparent; color: var(--primary);
+  font-weight: 500; font-size: 13px; padding: 8px 16px;
+  transition: all .18s ease; box-shadow: none; margin: 6px;
+}
+.profile .buttons .button:hover { background: var(--primary); color: var(--theme); }
+.profile .buttons .button-inner { padding: 0; }
+
+/* 首頁(非 profile)的 .first-entry hero */
+.first-entry { min-height: 0; padding: 60px 0 20px; }
+.first-entry .entry-header h1 {
+  font-size: 52px; font-weight: 800; letter-spacing: -.03em;
+}
+.first-entry .entry-content { font-size: 18px; color: var(--secondary); }
+
+/* ---- 列表頁:文章列(論文筆記 / 雜記)--------------------------- */
+.post-entry {
+  background: transparent; box-shadow: none; border: none;
+  border-top: 1px solid var(--border); border-radius: 0;
+  padding: 26px 0; transition: none;
+}
+.post-entry:hover { transform: none; }
+.post-entry:first-of-type { border-top: 1px solid var(--border); }
+.post-entry .entry-hint,
+.post-entry .entry-footer {
+  font-family: var(--rd-mono); font-size: 12px; font-weight: 600;
+  letter-spacing: .06em; color: var(--secondary);
+}
+.post-entry .entry-header h2 {
+  font-size: 23px; line-height: 1.25; font-weight: 700; letter-spacing: -.02em;
+  margin: 8px 0 9px;
+}
+.post-entry .entry-content {
+  font-size: 15px; line-height: 1.65; color: var(--secondary);
+  -webkit-line-clamp: 2; max-width: 600px;
+}
+.post-entry .entry-footer { margin-top: 12px; }
+
+/* 列表頁日期改成 mono 風(PaperMod 把日期放在 .entry-footer)*/
+.post-meta, .entry-footer { font-family: var(--rd-mono); }
+
+/* ---- 文章內頁 typography ----------------------------------------- */
+.post-single .post-meta {
+  font-family: var(--rd-mono); font-size: 12px; letter-spacing: .04em;
+  color: var(--secondary); padding-bottom: 22px;
+  border-bottom: 1px solid var(--border); margin-bottom: 34px;
+}
+.post-content { font-size: 16.5px; line-height: 1.75; }
+.post-content p { margin: 0 0 22px; }
+.post-content h2 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin: 40px 0 14px; }
+.post-content h3 { font-size: 19px; font-weight: 700; margin: 32px 0 12px; }
+.post-content blockquote {
+  border-inline-start: 3px solid var(--primary);
+  padding-inline-start: 20px; margin: 28px 0;
+  font-size: 17px; color: var(--secondary); font-style: normal;
+}
+.post-content code {
+  font-family: var(--rd-mono); font-size: .88em;
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 5px; padding: 2px 6px;
+}
+.post-content pre code { border: none; }
+
+/* 上一篇 / 下一篇 */
+.paginav { font-family: var(--rd-sans); }
+.paginav .title { font-family: var(--rd-mono); font-size: 11px; letter-spacing: .06em; }
+
+/* ---- 標籤頁 ------------------------------------------------------ */
+.terms-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.terms-tags a {
+  font-family: var(--rd-sans); font-size: 14.5px; font-weight: 600;
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 999px; padding: 8px 16px; box-shadow: none;
+  color: var(--primary); transition: all .15s ease;
+}
+.terms-tags a:hover { background: var(--primary); color: var(--theme); }
+
+/* ---- 所有文章 / Archives ----------------------------------------- */
+.archive-year { border: none; margin-top: 14px; }
+.archive-year .archive-year-header,
+.archive-month-header {
+  font-family: var(--rd-mono); font-weight: 600; letter-spacing: -.02em;
+  font-size: 32px; color: var(--primary);
+}
+.archive-count { font-family: var(--rd-mono); font-size: 12px; color: var(--secondary); font-weight: 400; }
+.archive-entry { border: none; padding: 0; margin: 0; }
+.archive-entry-title {
+  font-size: 15.5px; font-weight: 600; margin: 0; letter-spacing: -.01em;
+}
+.archive-meta, .archive-entry .archive-meta {
+  font-family: var(--rd-mono); font-size: 12px; color: var(--secondary);
+}
+.archive-posts { width: 100%; }
+.archive-entry { border-top: 1px solid var(--border); padding: 13px 4px; }
+
+/* ---- 標籤膠囊(文章底部 / 內頁)--------------------------------- */
+.post-tags li a, ul.post-tags li a {
+  font-family: var(--rd-mono); font-size: 11.5px; font-weight: 500;
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 5px; padding: 3px 9px; color: var(--content);
+}
+
+/* ---- Footer ------------------------------------------------------ */
+.footer { font-size: 12.5px; color: var(--secondary); }
+
+/* ---- RWD --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .page-header .post-title,
+  .post-single .post-title { font-size: 34px; }
+  .profile .profile_inner h1,
+  .first-entry .entry-header h1 { font-size: 36px; }
+}

@@ -1,0 +1,31 @@
+{{- define "main" }}
+<article class="post-single rd-about">
+  {{- /* eyebrow 置於兩欄上方(全寬),讓下方兩欄從標題開始、照片頂端與標題齊高 */ -}}
+  {{- partial "breadcrumbs.html" . }}
+  <div class="rd-about-top">
+    <div class="rd-about-main">
+      <h1 class="post-title rd-about-title">{{ .Title }}</h1>
+      <div class="post-content">
+        {{ .Content }}
+      </div>
+    </div>
+    {{- with .Params.photo }}
+    <img class="rd-about-photo" src="{{ . | relURL }}" alt="{{ $.Title }}">
+    {{- end }}
+  </div>
+
+  {{- with .Params.tools }}
+  <h2 class="rd-about-h2">常用工具</h2>
+  <div class="rd-tools">
+    {{- range . }}<span>{{ . }}</span>{{ end }}
+  </div>
+  {{- end }}
+
+  {{- if or .Params.github .Params.email }}
+  <div class="rd-cta">
+    {{- with .Params.github }}<a class="rd-cta-primary" href="{{ . }}" target="_blank" rel="noopener">Github ↗</a>{{ end }}
+    {{- with .Params.email }}<a class="rd-cta-ghost" href="mailto:{{ . }}">寄信給我</a>{{ end }}
+  </div>
+  {{- end }}
+</article>
+{{- end }}

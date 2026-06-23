@@ -1,0 +1,23 @@
+{{- define "main" }}
+
+{{- partial "index_profile.html" . }}
+
+{{- /* 最新文章清單(設計稿:hero 下方,日期 / 標題 / 分類 橫列)*/ -}}
+{{- $posts := first 5 (sort (where site.RegularPages "Section" "posts") "Date" "desc") }}
+{{- with $posts }}
+<div class="rd-latest">
+  <div class="rd-latest-head">
+    <h2>最新文章</h2>
+    <a href="{{ "archives/" | relURL }}">所有文章 →</a>
+  </div>
+  {{- range . }}
+  <a class="rd-latest-row" href="{{ .Permalink }}">
+    <span class="rd-latest-date">{{ .Date.Format "2006·01" }}</span>
+    <span class="rd-latest-title">{{ .Title }}</span>
+    <span class="rd-latest-cat">{{ with .Parent }}{{ .Title }}{{ end }}</span>
+  </a>
+  {{- end }}
+</div>
+{{- end }}
+
+{{- end }}

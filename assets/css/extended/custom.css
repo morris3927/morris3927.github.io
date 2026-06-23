@@ -1,8 +1,83 @@
-/* ── 全站背景統一(淺灰)──
-   PaperMod 預設:淺色模式下「列表頁(.list)」用淺灰 --code-bg、
-   「單篇頁(about/文章內頁)」用白 --theme,造成背景不一致。
-   這裡讓淺色模式的單篇頁也採用列表頁的淺灰底,使全站一致(白色內容卡浮在淺灰底上)。
-   深色模式 PaperMod 本來就統一為 --theme,故不更動(用 :not(.dark) 排除)。 */
-body:not(.dark) {
-  background: var(--code-bg);
+/* ── 亮色模式配色:暖白(沿用作品集原本的編輯風色票)──
+   只覆蓋 light 的 PaperMod 變數;深色模式由 .dark 控制,不受影響。 */
+:root {
+  --theme: #f6f5f3;     /* 頁面暖白底 */
+  --code-bg: #ecebe7;   /* 標籤 / code 暖灰底 */
+  --border: #e4e2db;    /* hairline 分隔線(暖) */
 }
+
+/* ── 全站背景統一(淺色=暖白、深色=深)──
+   配合 redesign(hairline 列表),讓列表頁也採用 --theme。 */
+.list { background: var(--theme); }
+
+/* ── 單篇文章:頂端返回連結(取代麵包屑)── */
+.rd-back {
+  display: inline-block; margin-bottom: 18px;
+  font-family: var(--rd-mono); font-size: 12px; letter-spacing: .06em;
+  color: var(--secondary); text-decoration: none;
+}
+.rd-back:hover { color: var(--primary); }
+
+/* ── 列表頁文章列:日期 + 閱讀時間徽章(上)→ 標題 → 摘要 → 標籤(下)── */
+.rd-entry-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.rd-entry-date { font-family: var(--rd-mono); font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--secondary); }
+.rd-entry-read {
+  font-family: var(--rd-mono); font-size: 10.5px; font-weight: 600; letter-spacing: .04em;
+  color: var(--secondary); background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 5px; padding: 2px 8px;
+}
+.rd-entry-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.rd-entry-tags span {
+  font-family: var(--rd-mono); font-size: 11px; font-weight: 500; color: var(--content);
+  background: var(--code-bg); border: 1px solid var(--border); border-radius: 5px; padding: 3px 9px;
+}
+
+/* ── 首頁:最新文章清單 ── */
+.rd-latest { margin: 8px auto 48px; }
+.rd-latest-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 6px;
+}
+.rd-latest-head h2 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+.rd-latest-head a { font-family: var(--rd-mono); font-size: 11.5px; letter-spacing: .06em; color: var(--secondary); text-decoration: none; }
+.rd-latest-head a:hover { color: var(--primary); }
+.rd-latest-row {
+  display: flex; align-items: baseline; gap: 18px; padding: 16px 4px;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--primary);
+  transition: background .15s ease;
+}
+.rd-latest-row:hover { background: var(--code-bg); }
+.rd-latest-date { font-family: var(--rd-mono); font-size: 12px; color: var(--secondary); flex: none; width: 64px; }
+.rd-latest-title { flex: 1; font-size: 15.5px; font-weight: 600; }
+.rd-latest-cat { font-family: var(--rd-mono); font-size: 11px; color: var(--secondary); flex: none; }
+
+/* ── 關於我:兩欄(左 標題+自介,右 照片卡片),下方工具/CTA 全寬 ── */
+.rd-about-top { display: flex; gap: 44px; align-items: flex-start; }
+.rd-about-main { flex: 1; min-width: 0; }
+.rd-about-title { margin-top: 0; padding-top: 0; }   /* 標題置頂,與照片頂端齊高 */
+.rd-about-photo {
+  flex: none; width: 220px; aspect-ratio: 4 / 5;
+  object-fit: cover; border-radius: 16px;
+  border: 1px solid var(--border); background: var(--entry);
+}
+.rd-about-h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin: 40px 0 14px; }
+@media (max-width: 720px) {
+  .rd-about-top { flex-direction: column; gap: 24px; }
+  .rd-about-photo { width: 100%; max-width: 280px; aspect-ratio: 3 / 2; }
+}
+
+/* ── 關於我:常用工具膠囊 + CTA ── */
+.rd-tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.rd-tools span {
+  font-family: var(--rd-mono); font-size: 12px; color: var(--content);
+  background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 11px;
+}
+.rd-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+.rd-cta a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; text-decoration: none; border-radius: 8px; padding: 11px 18px;
+  transition: opacity .15s ease;
+}
+.rd-cta a:hover { opacity: .85; }
+.rd-cta-primary { color: var(--theme); background: var(--primary); font-weight: 600; }
+.rd-cta-ghost { color: var(--primary); border: 1px solid var(--primary); font-weight: 500; }

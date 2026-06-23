@@ -19,6 +19,7 @@ buildExpired = false
   description = "一個重新回頭念書的工程師,記錄讀過的論文筆記與歷年網頁作品。"
   keywords = ["論文筆記", "AI", "機器學習", "作品集", "前端", "Morris"]
   author = "Morris"
+  homeEyebrow = "ENGINEER · BACK TO SCHOOL"
   # images = ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto" # dark, light
@@ -143,12 +144,6 @@ buildExpired = false
     weight = 20
 
   [[menu.main]]
-    identifier = "雜記"
-    name = "雜記"
-    url = "/posts/notes/"
-    weight = 30
-
-  [[menu.main]]
     identifier = "標籤"
     name = "標籤"
     url = "/tags/"
@@ -168,6 +163,8 @@ buildExpired = false
 
 
 [markup]
+  [markup.goldmark.renderer]
+    unsafe = true   # 允許內容中的 HTML(關於我頁的工具膠囊 / CTA 需要)
   [markup.highlight]
     noClasses = false
     # anchorLineNos = true

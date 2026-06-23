@@ -1,0 +1,8 @@
+{{- /* 專案覆蓋:取代原本麵包屑。
+        - 有 eyebrow 參數(列表/標籤/archives/about)→ 輸出閃爍圓點 mono eyebrow。
+        - 單篇文章(page 且上層為 section)→ 輸出「← 上層分類」返回連結(設計稿樣式)。 */ -}}
+{{- if .Params.eyebrow }}
+<p class="rd-eyebrow">{{ .Params.eyebrow }}</p>
+{{- else if and (eq .Kind "page") .Parent (in (slice "section") .Parent.Kind) }}
+<a class="rd-back" href="{{ .Parent.Permalink }}">← {{ .Parent.Title }}</a>
+{{- end }}
