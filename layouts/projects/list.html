@@ -1,0 +1,250 @@
+{{- define "main" }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ── 全幅暖白畫布,跳脫 PaperMod 的內容寬度限制 ── */
+  .pf {
+    width: 100vw; margin-left: calc(50% - 50vw);
+    background: #f6f5f3; color: #111;
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .pf *, .pf *::before, .pf *::after { box-sizing: border-box; }
+  .pf ::selection { background: #111; color: #f6f5f3; }
+  .pf-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+  @keyframes pf-blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  /* ── Header ── */
+  .pf-header { max-width: 880px; margin: 0 auto; padding: 80px 32px 52px; }
+  .pf-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: #8a877f; margin-bottom: 26px;
+  }
+  .pf-eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #111;
+    display: inline-block; animation: pf-blink 2.4s infinite;
+  }
+  .pf-name { font-size: 46px; line-height: 1.05; font-weight: 800; letter-spacing: -.03em; margin: 0 0 18px; }
+  .pf-intro { font-size: 18px; line-height: 1.6; color: #55524b; margin: 0 0 28px; }
+  .pf-socials { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pf-socials a {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12.5px; font-weight: 500; text-decoration: none; color: #111;
+    border: 1px solid #111; border-radius: 999px; padding: 7px 15px; transition: all .18s ease;
+  }
+  .pf-socials a:hover { background: #111; color: #f6f5f3; }
+  .pf-socials a .arr { opacity: .5; }
+
+  /* ── Timeline ── */
+  .pf-main { max-width: 880px; margin: 0 auto; padding: 0 32px 120px; }
+  .pf-timeline { position: relative; }
+  .pf-rail {
+    position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+    background: linear-gradient(#111 0%, #111 calc(100% - 60px), transparent 100%); opacity: .12;
+  }
+  .pf-item { position: relative; }
+  .pf-anim .pf-item { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+  .pf-anim .pf-item.is-visible { opacity: 1; transform: none; }
+  .pf-node { position: absolute; left: 0; top: 6px; }
+  .pf-dot { display: block; width: 16px; height: 16px; border-radius: 50%; background: #f6f5f3; border: 2px solid #111; }
+  .pf-dot.online { box-shadow: inset 0 0 0 3px #111; }
+  .pf-body { padding-left: 46px; padding-bottom: 64px; }
+
+  .pf-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .pf-date { font-size: 12px; font-weight: 600; letter-spacing: .08em; color: #8a877f; }
+  .pf-badge { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; border-radius: 5px; padding: 2px 8px; }
+  .pf-badge.online { color: #1f7a3d; background: #e8f3ea; border: 1px solid #cfe6d4; }
+  .pf-badge.offline { color: #8a877f; background: #ecebe7; border: 1px solid #dddbd4; }
+  .pf-title { font-size: 25px; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; margin: 0 0 10px; }
+  .pf-desc { font-size: 15.5px; line-height: 1.65; color: #55524b; margin: 0 0 16px; max-width: 600px; }
+  .pf-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+  .pf-tech span { font-size: 11.5px; font-weight: 500; color: #3a3833; background: #ecebe7; border: 1px solid #e0dfd9; border-radius: 5px; padding: 4px 9px; }
+
+  .pf-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .pf-visit {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 600; text-decoration: none; color: #f6f5f3;
+    background: #111; border-radius: 8px; padding: 11px 18px;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .pf-visit:hover { opacity: .85; transform: translateY(-1px); }
+  .pf-visit .host { font-size: 12px; opacity: .7; }
+  .pf-archive { font-size: 13px; font-weight: 500; color: #55524b; text-decoration: underline; }
+
+  /* ── Carousel ── */
+  .pf-carousel { position: relative; max-width: 480px; margin-bottom: 20px; border: 1px solid #e3e2dc; border-radius: 12px; overflow: hidden; background: #fff; }
+  .pf-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .pf-track::-webkit-scrollbar { display: none; }
+  .pf-slide { flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: 16/9; background: #f0efea; }
+  .pf-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pf-slide.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.018) 0, rgba(0,0,0,.018) 1px, transparent 1px, transparent 11px);
+  }
+  .pf-slide.placeholder span { font-size: 12px; color: #a8a59c; letter-spacing: .04em; }
+  .pf-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: rgba(255,255,255,.9); box-shadow: 0 1px 6px rgba(0,0,0,.12);
+    cursor: pointer; font-size: 16px; color: #111;
+    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+  }
+  .pf-arrow.prev { left: 12px; } .pf-arrow.next { right: 12px; }
+  .pf-counter {
+    position: absolute; top: 12px; right: 12px; font-size: 11px; font-weight: 500;
+    color: #f6f5f3; background: rgba(17,17,17,.7); border-radius: 999px; padding: 3px 9px; backdrop-filter: blur(4px);
+  }
+  .pf-dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .pf-dots button { width: 7px; height: 7px; border-radius: 999px; border: none; cursor: pointer; padding: 0; background: rgba(17,17,17,.28); transition: all .25s ease; }
+  .pf-dots button.active { width: 18px; background: #111; }
+
+  .pf-end { padding-left: 46px; font-size: 12px; color: #b3b0a7; letter-spacing: .1em; }
+
+  @media (max-width: 600px) {
+    .pf-header { padding: 56px 22px 40px; }
+    .pf-name { font-size: 34px; }
+    .pf-main { padding: 0 22px 90px; }
+  }
+</style>
+
+<div class="pf">
+  <!-- Header -->
+  <header class="pf-header">
+    {{- with .Params.eyebrow }}
+    <div class="pf-eyebrow pf-mono"><span class="dot"></span>{{ . }}</div>
+    {{- end }}
+    <h1 class="pf-name">{{ .Title }}</h1>
+    {{- with .Description }}<p class="pf-intro">{{ . }}</p>{{ end }}
+    {{- with site.Params.socialIcons }}
+    <div class="pf-socials pf-mono">
+      {{- range . }}
+      <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name | title }} <span class="arr">↗</span></a>
+      {{- end }}
+    </div>
+    {{- end }}
+    {{ .Content }}
+  </header>
+
+  <!-- Timeline -->
+  <main class="pf-main">
+    <div class="pf-timeline" id="pf-timeline">
+      <div class="pf-rail"></div>
+
+      {{- with site.Data.projects }}
+      {{- range sort . "date" "desc" }}
+      {{- $p := . }}
+      {{- $online := eq .status "online" }}
+      <article class="pf-item">
+        <div class="pf-node"><span class="pf-dot {{ if $online }}online{{ end }}"></span></div>
+        <div class="pf-body">
+          <div class="pf-meta">
+            <span class="pf-date pf-mono">{{ .date }}</span>
+            {{- if $online }}
+            <span class="pf-badge online pf-mono">● 線上</span>
+            {{- else }}
+            <span class="pf-badge offline pf-mono">已下架</span>
+            {{- end }}
+          </div>
+          <h2 class="pf-title">{{ .title }}</h2>
+          <p class="pf-desc">{{ .desc }}</p>
+          {{- with .tech }}
+          <div class="pf-tech pf-mono">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+          {{- end }}
+
+          {{- with .images }}
+          <div class="pf-carousel" data-carousel>
+            <div class="pf-track" data-track>
+              {{- range . }}
+              {{- if .src }}
+              <div class="pf-slide"><img loading="lazy" src="{{ .src | relURL }}" alt="{{ $p.title }}{{ with .label }} — {{ . }}{{ end }}"></div>
+              {{- else }}
+              <div class="pf-slide placeholder"><span class="pf-mono">{{ .label | default "screenshot" }}</span></div>
+              {{- end }}
+              {{- end }}
+            </div>
+            {{- if gt (len .) 1 }}
+            <button class="pf-arrow prev" data-prev aria-label="上一張">‹</button>
+            <button class="pf-arrow next" data-next aria-label="下一張">›</button>
+            <div class="pf-counter pf-mono" data-counter>1 / {{ len . }}</div>
+            <div class="pf-dots" data-dots>
+              {{- range $i, $img := . }}<button{{ if eq $i 0 }} class="active"{{ end }} aria-label="第 {{ add $i 1 }} 張"></button>{{ end }}
+            </div>
+            {{- end }}
+          </div>
+          {{- end }}
+
+          {{- if or .url .archive }}
+          <div class="pf-links">
+            {{- with .url }}<a class="pf-visit" href="{{ . }}" target="_blank" rel="noopener">造訪網站 <span class="host pf-mono">↗</span></a>{{ end }}
+            {{- with .archive }}<a class="pf-archive" href="{{ . }}" target="_blank" rel="noopener">封存版 (Wayback) ↗</a>{{ end }}
+          </div>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+      {{- end }}
+
+      <div class="pf-end pf-mono">// end of timeline</div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  // 捲動進場淡入
+  var tl = document.getElementById('pf-timeline');
+  var items = tl ? tl.querySelectorAll('.pf-item') : [];
+  if (tl && 'IntersectionObserver' in window && items.length) {
+    tl.classList.add('pf-anim');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
+  // 輪播:箭頭 / 圓點 / 計數器 / 自動播放(可手動,手動後停止自動)
+  document.querySelectorAll('[data-carousel]').forEach(function (car) {
+    var track = car.querySelector('[data-track]');
+    var slides = track ? track.querySelectorAll('.pf-slide') : [];
+    if (!track || slides.length < 2) return;
+    var counter = car.querySelector('[data-counter]');
+    var dots = car.querySelectorAll('[data-dots] button');
+    var prev = car.querySelector('[data-prev]');
+    var next = car.querySelector('[data-next]');
+    var timer = null, userTook = false;
+
+    function current() { return Math.round(track.scrollLeft / track.clientWidth); }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+    }
+    function sync() {
+      var c = current();
+      if (counter) counter.textContent = (c + 1) + ' / ' + slides.length;
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === c); });
+    }
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(sync); }, { passive: true });
+
+    function manual(i) { userTook = true; stop(); go(i); }
+    if (prev) prev.addEventListener('click', function () { manual(current() - 1); });
+    if (next) next.addEventListener('click', function () { manual(current() + 1); });
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { manual(i); }); });
+
+    function tick() { var c = current(); go(c + 1 >= slides.length ? 0 : c + 1); }
+    function play() { if (!timer && !userTook) timer = setInterval(tick, 4500); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    car.addEventListener('pointerenter', stop);
+    car.addEventListener('pointerleave', play);
+    car.addEventListener('touchstart', function () { userTook = true; stop(); }, { passive: true });
+    play();
+  });
+})();
+</script>
+
+{{- end }}

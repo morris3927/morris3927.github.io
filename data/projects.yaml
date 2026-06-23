@@ -1,0 +1,29 @@
+# 作品集資料 —— 新增作品就在這裡貼一段(由新到舊會自動依 date 排序)
+#
+# 欄位說明:
+#   title   作品名稱
+#   date    日期字串,顯示用,排序也用它(建議 "2025 · 06" 或 "2025-06")
+#   status  online(線上) / offline(已下架)→ 決定節點樣式與徽章
+#   url     僅線上作品填:有填就「額外」顯示造訪網站按鈕(下架作品留空)
+#   archive 選填:web.archive.org 封存連結
+#   desc    一段描述
+#   tech    技術標籤陣列
+#   images  截圖陣列 ——「每個作品都要有圖」;每張可給 src 與 label
+#           src 沒填時會顯示帶 label 的佔位圖,方便你之後再補圖
+#
+# 圖片放在 static/images/projects/<資料夾>/,src 寫對應網址路徑,例如 /images/projects/kado/1.png
+#
+# 把下面範本複製、取消註解後填上你的真實作品即可:
+#
+# - title: "作品名稱"
+#   date: "2025 · 06"
+#   status: online            # online / offline
+#   url: "https://..."        # 線上才填
+#   archive: ""               # 選填
+#   desc: "一段描述。"
+#   tech: ["React", "TypeScript"]
+#   images:
+#     - src: /images/projects/your-slug/1.png
+#       label: 主畫面
+#     - src: /images/projects/your-slug/2.png
+#       label: 內頁

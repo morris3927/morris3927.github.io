@@ -1,0 +1,8 @@
+/* ── 全站背景統一(淺灰)──
+   PaperMod 預設:淺色模式下「列表頁(.list)」用淺灰 --code-bg、
+   「單篇頁(about/文章內頁)」用白 --theme,造成背景不一致。
+   這裡讓淺色模式的單篇頁也採用列表頁的淺灰底,使全站一致(白色內容卡浮在淺灰底上)。
+   深色模式 PaperMod 本來就統一為 --theme,故不更動(用 :not(.dark) 排除)。 */
+body:not(.dark) {
+  background: var(--code-bg);
+}
