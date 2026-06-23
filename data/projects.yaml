@@ -1,29 +1,69 @@
-# 作品集資料 —— 新增作品就在這裡貼一段(由新到舊會自動依 date 排序)
+# 作品集資料 —— 由新到舊會自動依 date 排序
 #
-# 欄位說明:
-#   title   作品名稱
-#   date    日期字串,顯示用,排序也用它(建議 "2025 · 06" 或 "2025-06")
-#   status  online(線上) / offline(已下架)→ 決定節點樣式與徽章
-#   url     僅線上作品填:有填就「額外」顯示造訪網站按鈕(下架作品留空)
-#   archive 選填:web.archive.org 封存連結
-#   desc    一段描述
-#   tech    技術標籤陣列
-#   images  截圖陣列 ——「每個作品都要有圖」;每張可給 src 與 label
-#           src 沒填時會顯示帶 label 的佔位圖,方便你之後再補圖
-#
-# 圖片放在 static/images/projects/<資料夾>/,src 寫對應網址路徑,例如 /images/projects/kado/1.png
-#
-# 把下面範本複製、取消註解後填上你的真實作品即可:
-#
-# - title: "作品名稱"
-#   date: "2025 · 06"
-#   status: online            # online / offline
-#   url: "https://..."        # 線上才填
-#   archive: ""               # 選填
-#   desc: "一段描述。"
-#   tech: ["React", "TypeScript"]
-#   images:
-#     - src: /images/projects/your-slug/1.png
-#       label: 主畫面
-#     - src: /images/projects/your-slug/2.png
-#       label: 內頁
+# 欄位:title / slug / date / status / url(線上才填)/ archive(選填)/ desc / tech[]
+# status: online(●線上) | offline(已下架) | wip(開發中/尚未部署) | private(內部系統,不公開)
+# 圖片放 static/images/projects/<slug>/(檔名 1.png 2.png… 決定順序),系統會自動載入
+
+- title: "實驗室流程維護系統"
+  slug: lab-process
+  date: "2026 · 06"
+  status: private
+  url: ""
+  desc: "整合實驗室日常作業流程：手冊維護、新生帳號開設、機台監測與 GPU 使用狀況檢視、憑證更換等，把散落各處的流程集中起來、降低維護成本。"
+  tech: ["FastAPI", "Vue", "Docker", "GitLab CI/CD"]
+
+- title: "實驗室網站"
+  slug: lab-site
+  date: "2026 · 06"
+  status: wip
+  url: ""
+  desc: "翻新實驗室舊網站（2020 年學長姐以 R 部署的靜態網站）。接手後改以 Astro 重建靜態網站，並重新整理、維護內容。"
+  tech: ["Astro"]
+
+- title: "微積分練習系統"
+  slug: calculus-practice
+  date: "2025 · 10"
+  status: private
+  url: ""
+  desc: "AI 互動式微積分練習平台。學生以 LaTeX 撰寫解題步驟，由 AI 助教自動評分並給回饋；教師端可出題、檢視成績與 log、查看相關圖表。以 Docker + GitLab CI/CD 部署至 VM 供學生使用。"
+  tech: ["Python", "Flask", "Vue", "Docker", "GitLab CI/CD"]
+
+- title: "iThome 鐵人賽"
+  slug: ithome-ironman
+  date: "2022 · 10"
+  status: online
+  url: "https://ithelp.ithome.com.tw/users/20152469/ironman/5679"
+  desc: "iThome 鐵人賽 30 天連載：從 Go 基礎語法一路到使用 Gin 框架實作網站。"
+  tech: ["Go", "Gin"]
+
+- title: "個人 Blog"
+  slug: personal-blog
+  date: "2022 · 09"
+  status: online
+  url: "https://morris3927.github.io/"
+  desc: "以 Hugo 靜態網站框架打造的個人部落格，透過 GitHub Pages 自動部署上線。"
+  tech: ["Hugo", "GitHub Pages"]
+
+- title: "IWiCom 研究中心網站"
+  slug: dept-site
+  date: "2021 · 12"
+  status: offline
+  url: ""
+  desc: "IWiCom 無線通訊研究中心網站。除前端切版外，擔任 PM 角色，與外籍教授溝通需求並帶領團隊協作完成。"
+  tech: ["HTML", "CSS", "PM"]
+
+- title: "比賽報名網站"
+  slug: contest-signup
+  date: "2021 · 08"
+  status: offline
+  url: ""
+  desc: "活動／比賽線上報名網站。負責前端，以 HTML/CSS/JavaScript + Bootstrap 5 實作響應式（RWD）介面。"
+  tech: ["HTML", "CSS", "JavaScript", "Bootstrap 5", "RWD"]
+
+- title: "雲科技車產業網站"
+  slug: school-site
+  date: "2021 · 05"
+  status: offline
+  url: ""
+  desc: "雲科技車產業相關網站。負責前端設計與切版，以 HTML/CSS + Bootstrap 5 實作響應式（RWD）版面；此專案未涉及後端。"
+  tech: ["HTML", "CSS", "Bootstrap 5", "RWD"]

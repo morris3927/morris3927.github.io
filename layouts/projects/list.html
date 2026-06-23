@@ -59,6 +59,8 @@
   .pf-badge { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; border-radius: 5px; padding: 2px 8px; }
   .pf-badge.online { color: #1f7a3d; background: #e8f3ea; border: 1px solid #cfe6d4; }
   .pf-badge.offline { color: #8a877f; background: #ecebe7; border: 1px solid #dddbd4; }
+  .pf-badge.wip { color: #9a6a00; background: #fdf3df; border: 1px solid #f0e2bf; }
+  .pf-badge.private { color: #3a5a8a; background: #eef2f8; border: 1px solid #d8e0ee; }
   .pf-title { font-size: 25px; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; margin: 0 0 10px; }
   .pf-desc { font-size: 15.5px; line-height: 1.65; color: #55524b; margin: 0 0 16px; max-width: 600px; }
   .pf-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
@@ -138,13 +140,30 @@
       {{- range sort . "date" "desc" }}
       {{- $p := . }}
       {{- $online := eq .status "online" }}
+      {{- /* 圖片來源:優先用 yaml 明確的 images,否則自動讀取 static/images/projects/<slug>/ */ -}}
+      {{- $imgs := slice }}
+      {{- with .images }}{{- range . }}{{- $imgs = $imgs | append . }}{{- end }}{{- end }}
+      {{- if and (not $imgs) .slug }}
+        {{- $dir := printf "static/images/projects/%s" .slug }}
+        {{- if fileExists $dir }}
+          {{- range (readDir $dir) }}
+            {{- if in (slice ".png" ".jpg" ".jpeg" ".webp" ".gif" ".avif") (lower (path.Ext .Name)) }}
+              {{- $imgs = $imgs | append (dict "src" (printf "/images/projects/%s/%s" $p.slug .Name)) }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
       <article class="pf-item">
         <div class="pf-node"><span class="pf-dot {{ if $online }}online{{ end }}"></span></div>
         <div class="pf-body">
           <div class="pf-meta">
             <span class="pf-date pf-mono">{{ .date }}</span>
-            {{- if $online }}
+            {{- if eq .status "online" }}
             <span class="pf-badge online pf-mono">● 線上</span>
+            {{- else if eq .status "wip" }}
+            <span class="pf-badge wip pf-mono">開發中</span>
+            {{- else if eq .status "private" }}
+            <span class="pf-badge private pf-mono">內部系統</span>
             {{- else }}
             <span class="pf-badge offline pf-mono">已下架</span>
             {{- end }}
@@ -155,7 +174,7 @@
           <div class="pf-tech pf-mono">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
           {{- end }}
 
-          {{- with .images }}
+          {{- with $imgs }}
           <div class="pf-carousel" data-carousel>
             <div class="pf-track" data-track>
               {{- range . }}
@@ -180,7 +199,7 @@
           {{- if or .url .archive }}
           <div class="pf-links">
             {{- with .url }}<a class="pf-visit" href="{{ . }}" target="_blank" rel="noopener">造訪網站 <span class="host pf-mono">↗</span></a>{{ end }}
-            {{- with .archive }}<a class="pf-archive" href="{{ . }}" target="_blank" rel="noopener">封存版 (Wayback) ↗</a>{{ end }}
+            {{- with .archive }}<a class="pf-archive" href="{{ . }}" target="_blank" rel="noopener">封存版(Wayback) ↗</a>{{ end }}
           </div>
           {{- end }}
         </div>
