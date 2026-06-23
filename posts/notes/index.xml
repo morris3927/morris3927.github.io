@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Morris-blog</title>
-    <link>https://morris3927.github.io/</link>
-    <description>Recent content on Morris-blog</description>
+    <title>雜記 on Morris-blog</title>
+    <link>https://morris3927.github.io/posts/notes/</link>
+    <description>Recent content in 雜記 on Morris-blog</description>
     <generator>Hugo -- 0.151.2</generator>
     <language>zh-tw</language>
     <lastBuildDate>Mon, 20 Oct 2025 15:52:51 +0800</lastBuildDate>
-    <atom:link href="https://morris3927.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://morris3927.github.io/posts/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git 瘦身筆記：移除歷史記錄中的大型檔案</title>
       <link>https://morris3927.github.io/posts/notes/bfg-repo-cleaner-process-notes/</link>
@@ -25,14 +25,6 @@
       <description>&lt;blockquote&gt;
 &lt;p&gt;建站紀錄｜從 Hugo 初始化到 GitHub 自動部署&lt;/p&gt;
 &lt;/blockquote&gt;</description>
-    </item>
-    <item>
-      <title>關於我</title>
-      <link>https://morris3927.github.io/about/</link>
-      <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://morris3927.github.io/about/</guid>
-      <description>&lt;p&gt;嗨！我是 Morris，這裡是我的個人網站 👋&lt;br&gt;
-我喜歡寫程式、研究技術，也愛喝咖啡&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
